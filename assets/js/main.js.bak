@@ -1,0 +1,180 @@
+/* ─── CANVAS PARTICLES ─────────────────── */
+(function () {
+  const canvas = document.getElementById("canvas-bg");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let W, H, dots = [];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener("resize", () => { resize(); init(); });
+
+  function Dot() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.35;
+    this.vy = (Math.random() - 0.5) * 0.35;
+    this.r = Math.random() * 1.8 + 0.5;
+    this.a = Math.random() * 0.5 + 0.15;
+  }
+
+  function init() {
+    const n = Math.min(Math.floor(W * H / 12000), 110);
+    dots = Array.from({length: n}, () => new Dot());
+  }
+  init();
+
+  const CYAN = "0, 220, 200";
+  const BLUE = "0, 184, 245";
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < dots.length; i++) {
+      const a = dots[i];
+      a.x += a.vx; a.y += a.vy;
+      if (a.x < 0) a.x = W; if (a.x > W) a.x = 0;
+      if (a.y < 0) a.y = H; if (a.y > H) a.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${CYAN}, ${a.a})`;
+      ctx.fill();
+
+      for (let j = i + 1; j < dots.length; j++) {
+        const b = dots[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const alpha = (1 - dist / 120) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${j % 3 === 0 ? BLUE : CYAN}, ${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─── MOBILE MENU ──────────────────────── */
+(function () {
+  const burger = document.querySelector(".burger");
+  const links = document.querySelector(".nav-links");
+  if (!burger || !links) return;
+  burger.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-inner")) links.classList.remove("open");
+  });
+})();
+
+/* ─── ACTIVE NAV LINK ──────────────────── */
+(function () {
+  const path = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-links a").forEach(a => {
+    const href = a.getAttribute("href");
+    if (href === path || (path === "" && href === "index.html")) {
+      a.classList.add("active");
+    }
+  });
+})();
+
+/* ─── SCROLL REVEAL ────────────────────── */
+(function () {
+  const els = document.querySelectorAll(".reveal");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add("visible"), i * 80);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ─── ANIMATED COUNTERS ────────────────── */
+(function () {
+  const els = document.querySelectorAll("[data-count]");
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const end = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || "";
+      const dur = 1600;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(ease * end) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ─── FORM HANDLER ─────────────────────── */
+(function () {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name    = (data.get("nome") || data.get("name") || "").trim();
+    const email   = (data.get("email") || "").trim();
+    const tel     = (data.get("tel") || "").trim();
+    const service = (data.get("servizio") || "").trim();
+    const msg     = (data.get("messaggio") || "").trim();
+
+    if (!name || !email) {
+      showToast("Compila nome e email.", "err");
+      return;
+    }
+
+    const to      = "info@agmedicamilano.it";
+    const subject = encodeURIComponent("Richiesta dal sito – " + (service || "Contatto"));
+    const body    = encodeURIComponent(
+      `Nome: ${name}\nEmail: ${email}${tel ? "\nTelefono: " + tel : ""}${service ? "\nServizio: " + service : ""}\n\nMessaggio:\n${msg}`
+    );
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    showToast("Apertura client email…");
+  });
+
+  function showToast(msg, type) {
+    const t = document.createElement("div");
+    t.textContent = msg;
+    Object.assign(t.style, {
+      position: "fixed", bottom: "5rem", left: "50%",
+      transform: "translateX(-50%)",
+      background: type === "err" ? "#ff4466" : "#00dcc8",
+      color: "#070b10",
+      padding: "0.65rem 1.3rem",
+      borderRadius: "999px",
+      fontWeight: "700",
+      fontSize: "0.88rem",
+      zIndex: "999",
+      boxShadow: "0 6px 28px rgba(0,0,0,0.35)",
+      transition: "opacity 0.4s",
+    });
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity = "0"; setTimeout(() => t.remove(), 400); }, 2800);
+  }
+})();

@@ -1,0 +1,338 @@
+﻿/* ============================================
+   AG MEDICA — Inner Pages
+   ============================================ */
+
+/* ─── PAGE HERO ───────────────── */
+.page-hero {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  padding: 5rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.page-hero .w { position: relative; z-index: 1; }
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.2rem;
+}
+.breadcrumb a { color: rgba(255,255,255,0.75); transition: color 0.2s; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { color: rgba(255,255,255,0.45); }
+
+.page-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7dd4c8;
+  margin-bottom: 0.7rem;
+}
+.page-kicker::before {
+  content: "";
+  width: 18px; height: 2px;
+  background: #7dd4c8;
+  border-radius: 2px;
+}
+
+.page-title {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.9rem;
+  line-height: 1.1;
+}
+.page-title em {
+  font-style: normal;
+  color: #7dd4c8;
+}
+.page-lead {
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.68);
+  max-width: 60ch;
+  line-height: 1.75;
+}
+
+/* ─── TWO-COL ─────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ─── CONTENT BLOCK ───────────── */
+.content-block {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-sm);
+}
+.content-block h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+}
+.content-block p {
+  font-size: 0.94rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 0.85rem;
+}
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.91rem;
+  color: var(--text-dim);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--gray-50);
+}
+.feature-list li:last-child { border-bottom: none; }
+.feature-list li::before {
+  content: "";
+  width: 16px; height: 16px;
+  min-width: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 8l2.5 2.5L12 5' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── DOCTOR PROFILE ──────────── */
+.doc-profile-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.doc-avatar-lg {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sora", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+.doc-profile-name {
+  font-family: "Sora", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.doc-profile-role {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.doc-profile-bio {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  text-align: center;
+  padding-top: 0.2rem;
+  border-top: 1px solid var(--gray-100);
+  width: 100%;
+}
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.chip {
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  background: var(--accent);
+  border: 1px solid rgba(42,127,111,0.2);
+  color: var(--teal);
+}
+
+/* ─── BOOKING ASIDE ───────────── */
+.booking-aside { display: flex; flex-direction: column; gap: 1rem; }
+.booking-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.booking-card h4 {
+  font-family: "Sora", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--r-sm);
+  background: var(--off-white);
+  border: 1px solid var(--gray-100);
+  font-size: 0.88rem;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 0.45rem;
+}
+.contact-link:hover { border-color: var(--navy); background: var(--white); }
+.contact-link:last-child { margin-bottom: 0; }
+.contact-link-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* ─── STEPS ───────────────────── */
+.booking-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+.step {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 1.6rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--navy);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+.step-num {
+  font-family: "Sora", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gray-100);
+  line-height: 1;
+  margin-bottom: 0.7rem;
+}
+.step h4 {
+  font-family: "Sora", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.step p {
+  font-size: 0.87rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ─── TEAM CARDS ──────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--r-lg);
+  padding: 1.6rem;
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.team-avatar {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: var(--navy);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Sora", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+}
+.team-name {
+  font-family: "Sora", sans-serif;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.15rem;
+}
+.team-role {
+  font-size: 0.78rem;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+.team-bio {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* ─── CONTATTI ────────────────── */
+.contatti-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ─── RESPONSIVE ──────────────── */
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; }
+  .contatti-grid { grid-template-columns: 1fr; }
+  .booking-steps { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+}
