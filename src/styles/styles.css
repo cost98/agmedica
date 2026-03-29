@@ -151,6 +151,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
   object-fit: contain;
 }
+.logo-text { display: none; }
 .logo-text strong { color: var(--navy); }
 .logo-text small {
   display: block;

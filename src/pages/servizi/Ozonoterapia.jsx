@@ -58,10 +58,8 @@ export default function Ozonoterapia() {
                 </div>
               </div>
               <div className="booking-card reveal">
-                <h4>Prenota una visita</h4>
-                <Link to="/prenotazioni" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Prenota ora</Link>
-                <a href="https://www.miodottore.it" target="_blank" rel="noopener" className="contact-link" style={{ marginTop: '.6rem' }}><span className="contact-link-icon">🗓️</span>MioDottore</a>
-                <a href="tel:+390200000000" className="contact-link"><span className="contact-link-icon">📞</span>+39 02 0000 0000</a>
+                <a href="https://www.miodottore.it" target="_blank" rel="noopener" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Prenota su MioDottore</a>
+                <a href="tel:+390200000000" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', marginTop: '.8rem' }}>Chiama per prenotare</a>
               </div>
             </div>
           </div>

@@ -9,7 +9,6 @@ export default function Home() {
   useCounters()
 
   useEffect(() => {
-    document.title = 'AG Medica Milano — Studio Medico'
     document.querySelector('meta[name="description"]')
       ?.setAttribute('content', 'AG Medica Milano — Studio medico specializzato in Nutrizione, Osteopatia, Psicologia e Ozonoterapia. Via Giacomo Leopardi 3, Opera (MI).')
   }, [])
@@ -335,7 +334,6 @@ export default function Home() {
                   <span>Lun&ndash;Ven 9:00&ndash;19:00 &middot; Sab 9:00&ndash;13:00</span>
                 </div>
               </div>
-              <Link to="/prenotazioni" className="btn btn-primary reveal" style={{ marginTop: '.5rem', alignSelf: 'flex-start' }}>Prenota ora</Link>
             </div>
             <div className="reveal">
               <iframe
