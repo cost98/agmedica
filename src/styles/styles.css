@@ -690,7 +690,7 @@ p:last-child { margin-bottom: 0; }
 
 /* ─── QUOTE BANNER ────────────── */
 .quote-banner {
-  background: var(--navy);
+  background: transparent;
   border-radius: var(--r-lg);
   padding: 3rem;
   position: relative;
@@ -923,11 +923,24 @@ textarea { min-height: 120px; resize: vertical; }
   .services-grid { grid-template-columns: 1fr; }
 }
 
+@media (min-width: 761px) {
+  .nav-mobile-cta { display: none !important; }
+}
+
+
 @media (max-width: 760px) {
   .strip { font-size: 0.72rem; }
+  .strip-inner { 
+    justify-content: center;
+    gap: 0;
+  }
   .strip-inner > .strip-item:first-child { display: none; }
+  .strip-right { 
+    gap: 0;
+    width: 100%;
+    justify-content: space-evenly;
+  }
   .strip-right > .strip-item:first-child { display: none; }
-  .strip-right { gap: 0.6rem; }
   .nav-links {
     position: fixed;
     top: calc(var(--strip-height) + 68px);
