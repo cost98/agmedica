@@ -336,3 +336,22 @@
   .booking-steps { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 760px) {
+  .page-hero { padding: 4rem 0 2.5rem; }
+  .page-title { font-size: 1.9rem; }
+  .page-lead { font-size: 0.98rem; }
+  .content-block { padding: 1.8rem; }
+  .profile-card { padding: 1.8rem; }
+}
+
+@media (max-width: 580px) {
+  .page-hero { padding: 3.5rem 0 2rem; }
+  .page-title { font-size: 1.65rem; }
+  .page-lead { font-size: 0.92rem; }
+  .content-block { padding: 1.5rem; }
+  .profile-card { padding: 1.5rem; }
+  .team-card { padding: 1.5rem; }
+  .contact-card { padding: 1.5rem; }
+  .booking-step { padding: 1.5rem; }
+}
